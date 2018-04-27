@@ -1,5 +1,5 @@
 schema_version: 1
 
-name: spark
+name: lab
 execute:
     - script: install

@@ -18,6 +18,7 @@ modules:
       install:
           - name: spark
           - name: metrics
+          - name: lab
 packages:
       install:
           - java-1.8.0-openjdk
