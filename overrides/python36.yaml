@@ -1,5 +1,5 @@
 # Python 3.6 override
-# for more information see https://concreate.readthedocs.io/en/develop/overrides.html
+# for more information see https://docs.cekit.io/en/latest/handbook/overrides.html
 schema_version: 1
 
 envs:
