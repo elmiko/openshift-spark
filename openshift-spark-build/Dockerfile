@@ -18,26 +18,8 @@
 
 FROM centos:latest
 
-USER root
-
-
-# Install required RPMs and ensure that the packages were installed
-RUN yum install -y java-1.8.0-openjdk wget numpy \
-    && yum clean all && rm -rf /var/cache/yum \
-    && rpm -q java-1.8.0-openjdk wget numpy
-
-
-# Add all artifacts to the /tmp/artifacts
-# directory
-COPY \
-    spark-2.4.0-bin-hadoop2.7.tgz \
-    /tmp/artifacts/
-
-
 # Environment variables
 ENV \
-    JBOSS_IMAGE_NAME="radanalyticsio/openshift-spark" \
-    JBOSS_IMAGE_VERSION="2.4-latest" \
     PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/spark/bin" \
     SCL_ENABLE_CMD="" \
     SPARK_HOME="/opt/spark" \
@@ -46,13 +28,26 @@ ENV \
 
 # Labels
 LABEL \
-      io.cekit.version="2.2.7"  \
+      io.cekit.version="2.0.0"  \
       io.openshift.s2i.scripts-url="image:///usr/libexec/s2i"  \
       maintainer="Chad Roberts <croberts@redhat.com>"  \
-      name="radanalyticsio/openshift-spark"  \
-      org.concrt.version="2.2.7"  \
-      sparkversion="2.4.0"  \
-      version="2.4-latest" 
+      org.concrt.version="2.0.0"  \
+      sparkversion="2.4.4" 
+
+
+USER root
+
+
+# Install required RPMs and ensure that the packages were installed
+RUN yum install -y numpy java-1.8.0-openjdk wget \
+    && yum clean all && rm -rf /var/cache/yum && \
+    rpm -q  numpy java-1.8.0-openjdk wget
+
+# Add all artifacts to the /tmp/artifacts
+# directory
+COPY \
+    spark-2.4.4-bin-hadoop2.7.tgz \
+    /tmp/artifacts/
 
 # Add scripts used to configure the image
 COPY modules /tmp/scripts
@@ -83,4 +78,3 @@ WORKDIR /tmp
 ENTRYPOINT ["/entrypoint"]
 
 CMD ["/launch.sh"]
-

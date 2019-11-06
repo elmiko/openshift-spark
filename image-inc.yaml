@@ -8,7 +8,7 @@ labels:
     - name: maintainer
       value: Chad Roberts <croberts@redhat.com>
     - name: sparkversion
-      value: 2.4.0
+      value: 2.4.4
     - name: "io.openshift.s2i.scripts-url"
       value: "image:///usr/libexec/s2i"
 envs:
