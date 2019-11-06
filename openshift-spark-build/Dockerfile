@@ -39,9 +39,9 @@ USER root
 
 
 # Install required RPMs and ensure that the packages were installed
-RUN yum install -y numpy java-1.8.0-openjdk wget \
+RUN yum install -y python2-numpy java-1.8.0-openjdk wget \
     && yum clean all && rm -rf /var/cache/yum && \
-    rpm -q  numpy java-1.8.0-openjdk wget
+    rpm -q  python2-numpy java-1.8.0-openjdk wget
 
 # Add all artifacts to the /tmp/artifacts
 # directory
